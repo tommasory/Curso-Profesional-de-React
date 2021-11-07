@@ -3,8 +3,12 @@ import './App.css';
 import Pelicula from './Pelicula';
 import PageWrapper from './PageWrapper';
 import peliculasJson from './peliculas.json'
+import Paginacion from './Paginacion';
+import { useState } from 'react';
 
 function App() {
+
+  const [paginaActual, setPaginaActual] = useState(1);
 
   let peliculas = peliculasJson;
   
@@ -17,6 +21,12 @@ function App() {
           {pelicula.descripcion}
         </Pelicula>
       )}
+
+      <Paginacion pagina={paginaActual} total={4} onChange={(pagina) => {
+        // Cuando llamamos a setPaginaActual le decimos que se tiene que renderizar
+        // y ademas de cambiar el valor. El valor de pagina actual va a cambiar con el que se haya recibido al hacer el clic y asu vez renderiza el componente. en este caso el componente Paginacion.
+        setPaginaActual(pagina)
+      }}/>
 
     </PageWrapper>
   );
